@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css" />
+    <title>{% block title %}Learning log site{% endblock %}</title>
+</head>
+
+<body>
+    <div id="sidebar">
+        {% block sidebar %}
+         <p>
+			<a href="{% url 'learning_logs:index' %}">Learning Log</a>-
+			<a href="{% url 'learning_logs:topics' %}">Topics</a>
+			{% if user.is_authenticated %}
+				hello, {{user.username}}
+				<a href="{% url 'users:logout'%}">Log out</a>
+			{% else %}
+				<a href="{% url 'users:login'%}"> Log in</a>
+			{% endif %}
+		</p>
+        {% endblock %}
+    </div>
+
+   
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
